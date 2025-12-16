@@ -16,6 +16,12 @@ Rails.application.routes.draw do
     resources :categories
     resources :orders, only: [:index, :show, :update]
     resources :promotions
+    resources :users, only: [:index, :edit, :update] do
+      member do
+        patch :confirm_email
+        patch :verify_phone
+      end
+    end
   end
   
   get "up" => "rails/health#show", as: :rails_health_check

@@ -2,7 +2,7 @@ module ApplicationHelper
   WHATSAPP_NUMBER = "56996972920"
   
   def whatsapp_order_link(product, quantity: 1)
-    return "#" unless user_signed_in? && current_user.profile_complete?
+    return "#" unless user_signed_in? && current_user.can_place_orders?
     
     message = "Hola! Me interesa hacer un pedido:\n\n"
     message += "🍰 *#{product.name}*\n"
@@ -36,6 +36,6 @@ module ApplicationHelper
   end
   
   def user_can_order?
-    user_signed_in? && current_user.profile_complete?
+    user_signed_in? && current_user.can_place_orders?
   end
 end

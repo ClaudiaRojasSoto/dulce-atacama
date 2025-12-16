@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   enum role: { customer: 0, admin: 1 }
   
@@ -13,8 +13,9 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
   
   # Método para verificar si el usuario puede hacer pedidos
+  # Email se verifica con Devise confirmable, teléfono es manual
   def can_place_orders?
-    phone_verified? && email_verified?
+    confirmed? && phone_verified?
   end
   
   # Método para verificar si el perfil está completo
