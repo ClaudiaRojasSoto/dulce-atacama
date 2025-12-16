@@ -1,0 +1,9 @@
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="mb-8">
+    <%= link_to "← Volver a categorías", admin_categories_path, class: "text-purple-600 hover:text-purple-700 font-medium" %>
+  </div>
+
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">Nueva Categoría</h1>
+
+  <%= render "form", category: @category %>
+</div>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html class="h-full">
+  <head>
+    <title>Dulce Atacama - Pastelería en Copiapó</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Pastelería artesanal en Copiapó, Región de Atacama. Pedidos con 24 horas de anticipación.">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body class="h-full flex flex-col bg-gradient-to-br from-pink-50 via-white to-purple-50">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <%= link_to root_path, class: "flex items-center space-x-2" do %>
+              <span class="text-3xl">🍰</span>
+              <span class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                Dulce Atacama
+              </span>
+            <% end %>
+          </div>
+          
+          <div class="flex items-center space-x-4">
+            <%= link_to "Productos", products_path, class: "text-gray-700 hover:text-pink-600 font-medium transition" %>
+            
+            <% if user_signed_in? %>
+              <%= link_to "Mis Pedidos", orders_path, class: "text-gray-700 hover:text-pink-600 font-medium transition" %>
+              
+              <% if current_user.admin? %>
+                <%= link_to "Admin", admin_root_path, class: "bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition font-medium" %>
+              <% end %>
+              
+              <%= button_to "Salir", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-pink-600 font-medium transition" %>
+            <% else %>
+              <%= link_to "Iniciar Sesión", new_user_session_path, class: "text-gray-700 hover:text-pink-600 font-medium transition" %>
+              <%= link_to "Registrarse", new_user_registration_path, class: "bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-purple-700 transition font-medium shadow-md" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <% if notice %>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg shadow-sm" data-controller="alert" data-action="click->alert#dismiss">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm text-green-700"><%= notice %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg shadow-sm" data-controller="alert" data-action="click->alert#dismiss">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm text-red-700"><%= alert %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <main class="flex-1">
+      <%= yield %>
+    </main>
+
+    <footer class="bg-gradient-to-r from-pink-600 to-purple-700 text-white mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-3 flex items-center">
+              <span class="text-2xl mr-2">🍰</span>
+              Dulce Atacama
+            </h3>
+            <p class="text-pink-100">Pastelería artesanal con delivery en Copiapó, Región de Atacama.</p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-3 text-lg">Contacto</h4>
+            <p class="text-pink-100 mb-2">📞 +56 9 9999 9999</p>
+            <p class="text-pink-100 mb-2">📧 info@dulceatacama.cl</p>
+            <p class="text-pink-100">📍 Copiapó, Región de Atacama</p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-3 text-lg">Información</h4>
+            <p class="text-pink-100 mb-2">⏰ Pedidos con 24 horas de anticipación</p>
+            <p class="text-pink-100">🚗 Servicio de delivery</p>
+          </div>
+        </div>
+        
+        <div class="border-t border-pink-500 mt-6 pt-6 text-center text-pink-100">
+          <p>&copy; <%= Time.current.year %> Dulce Atacama. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

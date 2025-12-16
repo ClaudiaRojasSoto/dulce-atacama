@@ -1,0 +1,37 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">Categorías</h1>
+    <%= link_to "Nueva Categoría", new_admin_category_path, class: "bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition font-semibold shadow-md" %>
+  </div>
+
+  <% if @categories.any? %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @categories.each do |category| %>
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+          <div class="flex items-start justify-between mb-4">
+            <h3 class="text-xl font-bold text-gray-800"><%= category.name %></h3>
+            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">
+              <%= category.products.count %> productos
+            </span>
+          </div>
+          
+          <% if category.description.present? %>
+            <p class="text-gray-600 mb-4 line-clamp-2"><%= category.description %></p>
+          <% end %>
+          
+          <div class="flex justify-end space-x-2 pt-4 border-t">
+            <%= link_to "Editar", edit_admin_category_path(category), class: "text-purple-600 hover:text-purple-900 font-medium" %>
+            <%= button_to "Eliminar", admin_category_path(category), method: :delete, data: { turbo_confirm: "¿Estás seguro?" }, class: "text-red-600 hover:text-red-900 font-medium" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="bg-white rounded-xl shadow-lg p-12 text-center">
+      <span class="text-6xl mb-4 block">📁</span>
+      <h3 class="text-2xl font-bold text-gray-700 mb-2">No hay categorías</h3>
+      <p class="text-gray-500 mb-6">Comienza creando tu primera categoría</p>
+      <%= link_to "Crear Categoría", new_admin_category_path, class: "inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition font-semibold" %>
+    </div>
+  <% end %>
+</div>

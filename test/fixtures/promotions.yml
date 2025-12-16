@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  discount_percentage: 9.99
+  active: false
+  valid_from: 2025-12-16
+  valid_until: 2025-12-16
+
+two:
+  title: MyString
+  description: MyText
+  discount_percentage: 9.99
+  active: false
+  valid_from: 2025-12-16
+  valid_until: 2025-12-16

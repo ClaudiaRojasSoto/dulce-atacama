@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  status: MyString
+  total: 9.99
+  delivery_address: MyText
+  delivery_date: 2025-12-16 15:16:57
+  phone: MyString
+  notes: MyText
+
+two:
+  user: two
+  status: MyString
+  total: 9.99
+  delivery_address: MyText
+  delivery_date: 2025-12-16 15:16:57
+  phone: MyString
+  notes: MyText
