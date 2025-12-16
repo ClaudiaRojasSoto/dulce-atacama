@@ -65,13 +65,8 @@
                       Pedir
                     <% end %>
                   <% elsif user_signed_in? %>
-                    <%= link_to complete_profile_path, class: "bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition text-sm", 
-                        title: "Completa tu perfil para poder hacer pedidos" do %>
-                      🔒 Completa perfil
-                    <% end %>
-                  <% else %>
-                    <%= link_to new_user_session_path, class: "bg-gray-400 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-500 transition" do %>
-                      🔒 Inicia sesión
+                    <%= link_to complete_profile_path, class: "bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition text-sm" do %>
+                      Completar perfil
                     <% end %>
                   <% end %>
                 </div>
