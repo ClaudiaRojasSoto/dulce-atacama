@@ -1,0 +1,50 @@
+<div class="max-w-md mx-auto mt-8 p-8 bg-white rounded-xl shadow-lg">
+  <h2 class="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Crear Cuenta</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="mb-4">
+      <%= f.label :full_name, "Nombre completo", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.text_field :full_name, autofocus: true, class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500", placeholder: "Tu nombre completo" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :email, "Correo electrónico", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.email_field :email, autocomplete: "email", class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500", placeholder: "tu@email.com" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :phone, "Teléfono", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.text_field :phone, class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500", placeholder: "+56 9 1234 5678" %>
+      <p class="text-sm text-gray-500 mt-1">Formato: +56 9 1234 5678 o 912345678</p>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password, "Contraseña", class: "block text-gray-700 font-medium mb-2" %>
+      <% if @minimum_password_length %>
+        <p class="text-sm text-gray-500 mb-1">Mínimo <%= @minimum_password_length %> caracteres</p>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :password_confirmation, "Confirmar contraseña", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" %>
+    </div>
+
+    <div class="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+      <p class="text-sm text-gray-700">
+        ⚠️ <strong>Importante:</strong> Necesitamos verificar tu email y teléfono antes de que puedas hacer pedidos.
+      </p>
+    </div>
+
+    <div class="mb-4">
+      <%= f.submit "Crear cuenta", class: "w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-pink-600 hover:to-purple-700 transition font-semibold shadow-md cursor-pointer" %>
+    </div>
+  <% end %>
+
+  <div class="text-center mt-4">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

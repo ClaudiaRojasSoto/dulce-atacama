@@ -1,0 +1,41 @@
+<div class="max-w-md mx-auto mt-8 p-8 bg-white rounded-xl shadow-lg">
+  <h2 class="text-3xl font-bold text-center mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Completa tu Perfil</h2>
+  
+  <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+    <p class="text-sm text-gray-700">
+      ℹ️ Para poder hacer pedidos, necesitamos que completes tu información de contacto.
+    </p>
+  </div>
+
+  <%= form_with model: @user, url: update_profile_path, method: :patch, local: true do |f| %>
+    <% if @user.errors.any? %>
+      <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <h3 class="text-red-800 font-semibold mb-2">Errores:</h3>
+        <ul class="list-disc list-inside text-red-700 text-sm">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= f.label :full_name, "Nombre completo", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.text_field :full_name, class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500", placeholder: "Tu nombre completo" %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :phone, "Teléfono", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.text_field :phone, class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500", placeholder: "+56 9 1234 5678" %>
+      <p class="text-sm text-gray-500 mt-1">Formato: +56 9 1234 5678 o 912345678</p>
+    </div>
+
+    <div class="mb-4">
+      <%= f.submit "Guardar información", class: "w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-pink-600 hover:to-purple-700 transition font-semibold shadow-md cursor-pointer" %>
+    </div>
+  <% end %>
+
+  <div class="text-center mt-4">
+    <%= link_to "Volver", root_path, class: "text-gray-600 hover:text-gray-800" %>
+  </div>
+</div>
